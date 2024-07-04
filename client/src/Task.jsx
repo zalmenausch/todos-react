@@ -1,14 +1,17 @@
-export default function Task({ task }) {
+import React from "react";
+import completed from "./completed"
+
+export default function Task({ task, completeTask, deleteTask }) {
   return (
     <div className="task">
-      <p>
-        {task.title} {task.done}
+      <p style={{ textDecoration: task.done ? 'line-through' : 'none' }}>
+        {task.title}
       </p>
       <div>
         {task.done ? (
           <></>
         ) : (
-          <button onClick={() => console.log("click")}>
+          <button onClick={() => completeTask(task.id)}>
             <svg
               width="19"
               height="24"
@@ -24,7 +27,7 @@ export default function Task({ task }) {
             </svg>
           </button>
         )}
-        <button>
+        <button onClick={() => deleteTask(task.id)}>
           <svg
             width="19"
             height="24"
